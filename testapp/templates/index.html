@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment_junban</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding-top: 50px;
+      font-size: 16px;
+      margin: 50px;
+      margin-bottom: 200px;
+    }
+    button {
+        margin: 5px;
+        padding: 5px 10px;
+        font-size: 14px;
+        /**align-items: center;*/
+    }
+    input[type="radio"] {
+      margin-right: 5px; /* Add space between radio buttons */
+    }
+    .radio-container {
+      display: flex;
+      justify-content: space-around; /* Distribute radio buttons evenly horizontally */
+      margin-top: 10px; /* Add space between video and radio buttons */
+    }
+    .description {
+        border-bottom: 2px solid black;
+        /* 黒い横線を追加 */
+        padding-bottom: 10px;
+        /* 横線とテキストの間にスペースを追加 */
+        margin-bottom: 10px;
+        /* 横線と下の要素との間にスペースを追加 */
+        text-align: center;
+        /* テキストを中央揃え */
+    }
+
+    .controlButtons,
+    .ratingButtons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        /* ページ全体の幅を占めるように設定 */
+    }
+
+    .ratingButton {
+        width: 150px;
+        padding: 10px 0;
+        font-size: 20px;
+        /* width: 100%;  */
+    }
+
+    .selected {
+        background-color: #ddd;
+    }
+    img {
+      align-items: center;
+      max-width: 60%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    video {
+      align-items: center;
+      max-width: 60%; /* Ensure videos don't exceed their container's width */
+      height: auto;    /* Maintain the aspect ratio */
+      margin-bottom: 10px; /* Add space between videos */
+    }
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px; /* Add space between videos */
+    }
+    .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around; /* Distribute buttons evenly */
+      margin-top: 10px; /* Add space between video and buttons */
+    }
+    hr {
+      width: 100%; /* Set the line width to the screen width */
+      border: 0; /* Remove default border */
+      border-top: 2px solid black; /* Set the line thickness and color */
+      margin: 20px 0; /* Adjust the margin as needed */
+    }
+    label:hover{
+      color: blue;
+    }
+    .preSurveyForm>label{
+      display: block;
+      position: relative;
+      padding: 5px;
+      cursor: pointer;
+      text-align: left;
+      padding-left: 1em;
+    }
+    .preSurveyForm>label>input{
+      position: relative;
+      margin-right: 5px;
+      cursor: pointer;
+      text-align: left;
+    }
+        
+</style>
+</head>
+<body>
+<!-- Page 1 Consent Form-->
+  <div id="consentPage">
+    <!-- sentence -->
+      <h1>Consent Form</h1>
+      <hr width=100%>
+      <!--
+      <p>Thank you very much for taking part in this survey.</p>
+      <br>
+
+      <h3>Purpose of the experiment and survey</h2>
+      <p>The purpose of this study is to visualize music. Please read this instruction manual before starting the experiment. If you agree to participate, please check below. </p>
+      <br>
+        
+        
+      <h3>Procedures of the experiment and survey</h2>
+      <p>This experiment is conducted on people with no hearing loss or hearing difficulty. You must use earphones or headphones to hear the sound.</p>
+      <br>
+
+      <p>You will be asked to complete a questionnaire about your musical experience and reading music scores. You will then watch a short video with sound and answer a questionnaire about the relationship between the impressions you get from your ears and your eyes. The survey will take approximately 15 minutes.</p>
+      <br>
+
+      <h3>Potential risks and pain</h2>
+      <p>Except for possible fatigue from participating in the experiment, there are no potential risks or pain involved. You are also free to withdraw from the experiment at any time and for any reason. (Please refer to the “Participation and withdrawal” section.)</p>
+      <br>
+        
+      <h3>Handling of Personal Information and Data</h2>
+      <p>Anonymity will be maintained for any information obtained from this experiment and survey, except if a request for disclosure is received through legal means. Anonymity will be maintained through the assignment of numbers to the participants and use of statistical analyses. The data collected will be anonymized, processed statistically, and later published in the form of papers and academic meeting presentations. There also are cases in which an individual’s data will be anonymized and published for secondary analysis and other purposes. In these cases, however, data are never published in a format that would allow identification of a specific individual. The stored data will be disposed of within five years after the conclusion of the research.</p>
+      <br>
+        
+      <h3>Participation and withdrawal</h2>
+      <p>You are free to choose to participate or not participate in this experiment and survey. Having decided to participate, you may still withdraw at any time and for any reason.</p>
+      <br>
+        
+      <h3>Inquiries to the implementer of this experiment and survey</h2>
+      <p>If you have any questions about this study, please inquire with either the implementer or the implementation manager.</p>
+      <br>
+
+      <hr style="border:none;border-top:dashed 1px;height:1px;width:100%;">
+        
+      <p>I agree to take part in this experiment and survey after carefully reading and understanding the above explanations.</p>
+      -->
+    
+    <form id="consentForm">
+      <label><input type="radio" id="consent" name="consent" value="agree"> I agree</label>
+      <label><input type="radio" id="consent" name="consent" value="disagree"> I do not agree</label>
+      <button type="button" id="nextToProlificID" onclick="nextPage1()" disabled>NEXT</button>
+    </form>
+  </div>
+<!-- Page 2 Prolific ID-->
+  <div id="prolificIDPage" style="display: none;">
+    <h1>Please enter your Prolific ID</h1>
+    <p>The NEXT button will be activated when you enter your ID and press Enter</p>
+    <form id="prolificForm">
+      <label for="prolificID">Prolific ID:
+      <input type="text" id="prolificID" onchange="isEntered()"> </label>
+      <button type="button" id="nextToPreQuestions" onclick="nextPage2()" disabled>NEXT</button>
+    </form>
+  </div>
+<!-- Page 3 Pre Survey Form -->
+  <div class="preSurveyForm" id="preSurveyForm" style="display: none;">
+    <h1>Survey Question Page 1</h1>
+    <hr>
+      <form id="preSurveyForm">
+          <!-- Question 1 -->
+          <h3>Question 1</h3>
+          <p>Do you have any musical experience? <!--Please choose the option that comes closest. --> </p>
+          <div class="musicExperience">
+            <label><input type="radio" name="musicExperience" value="work" onclick="isCheckedPage3ex()"> 音楽を仕事としている</label>
+          </div>
+            <div class="musicExperience">
+            <label><input type="radio" name="musicExperience" value="hobby" onclick="isCheckedPage3ex()"> 習い事や趣味で音楽を楽しんでいる</label>
+          </div>
+          <div class="musicExperience">
+            <label><input type="radio" name="musicExperience" value="school" onclick="isCheckedPage3ex()"> 学校で習った程度</label><br>
+          </div>
+          <div class="musicExperience">
+            <label><input type="radio" name="musicExperience" value="none" onclick="isCheckedPage3ex()"> なし</label><br>
+          </div>
+          <hr style="border:none;border-top:dashed 1px;height:1px;width:100%;">
+          <!-- Question 2 -->
+          <h3>Question 2</h3>
+          <p>How well do you read musical score?</p>
+          <div class="musicalScore">
+            <label><input type="radio" name="musicalScore" value="sightRead" onclick="isCheckedPage3sc()"> 初見で頭の中で再現できる</label></div>
+          <div class="musicalScore">
+            <label><input type="radio" name="musicalScore" value="time" onclick="isCheckedPage3sc()"> 時間があれば頭の中で再現できる</label></div>
+          <div class="musicalScore">
+            <label><input type="radio" name="musicalScore" value="pitchRhythm" onclick="isCheckedPage3sc()"> 音程とリズムがわかる</label></div>
+          <div class="musicalScore">
+            <label><input type="radio" name="musicalScore" value="pitch" onclick="isCheckedPage3sc()"> 音程がわかる</label></div>
+          <div class="musicalScore">
+            <label><input type="radio" name="musicalScore" value="rhythm" onclick="isCheckedPage3sc()"> リズムがわかる</label></div> 
+
+          <hr style="border:none;border-top:dashed 1px;height:1px;width:100%;">
+          <button type="button" id="nextToSurveyQuestions" onclick="nextPage3()" disabled>NEXT</button>
+      </form>
+  </div>
+<!-- Page 4 Survey Questions -->
+  <div id="surveyPage" style="display: none;">
+    <h1>Survey Questions</h1>
+    <p>Explanation text goes here.</p>
+    <p>動画の例</p>
+    <img src="{{ url_for('static', filename='images/example.png') }}"> <!-- 入れない方が良いかも　入れるなら別の曲で！LF1とかいいんじゃない？余ってるし-->
+    <hr>
+    <!-- Add image here -->
+    <form id="surveyForm">
+        <!-- Add Q1〜Q8 radio button sets here -->
+        <div id="videoContainer"></div>
+
+        <button type="button" id="nextToEndOfPage" onclick="nextPage4()" disabled>NEXT</button>
+    </form>
+  </div>
+<!-- Page 5 End Page -->
+  <div id="endOfSurvey" style="display: none;">
+    <h1>End of survey</h1>
+    <p>
+      Please complete the following two steps to record your survey response and receive your reward:</p>
+    <p>1) Make a note of this completion code: <b>-----</b></p>
+    <p>2) Click 'Submit' on this page to record your response.</p>
+    <p>If you do not complete the second step, we will not receive your data and will be unable to reward you.</p>
+    <p>3) Enter the completion code on Prolific to register your submission</p>
+    <p>多大なる感謝を述べる</p>
+  </div>
+<!-- Not Consent Page -->
+  <div id="doesNotConsentPage" style="display: none;">
+    <h1>Does not consent</h1>
+    <p>
+      As you do not wish to participate in this study, please return your submission on Prolific by selecting the 'Stop without completing' button.
+    </p>
+  </div>
+  <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+</body>
+</html>
